@@ -48,7 +48,7 @@ Features
     - [x] Display prices of spots on the map
         - [x] Widgets take you to the correct article when clicked
         - [x] Hovering over it displays the picture + title of that article
-    - [ ] Add sidebar on the left with all articles on top of the other like on this [website](https://blog.mapbox.com/search-for-your-next-apartment-with-rentpath-34ac78d31d52)
+    - [x] Add sidebar on the left with all articles on top of the other like on this [website](https://blog.mapbox.com/search-for-your-next-apartment-with-rentpath-34ac78d31d52)
 - Browse page
     /!\ Started to build the template 
     - On the left:
@@ -64,7 +64,7 @@ Features
     - [x] Use regex to check mail validity
     - [x] Hidden password field
     - [x] Login button disabled when either fields ar empty / invalid
-
+- Possibly add an extra page ?
 
 
 Packages installed:
