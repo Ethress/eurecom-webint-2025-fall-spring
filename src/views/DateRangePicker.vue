@@ -25,6 +25,17 @@
       </span>
     </div>
   </div>
+
+<div class="footer">
+  <button
+    class="select-button"
+    :disabled="!startDate || !endDate"
+    @click="confirmSelection"
+  >
+    Select
+  </button>
+</div>
+
 </template>
 
 <script>
@@ -90,10 +101,8 @@ export default {
     },
     isInRange(date) {
       return (
-        this.startDate &&
-        this.endDate &&
-        date >= this.startDate &&
-        date <= this.endDate
+        date > this.startDate &&
+        date < this.endDate
       );
     },
     prevMonth() {
@@ -112,6 +121,10 @@ export default {
         this.currentMonth++;
       }
     }
+    ,
+    confirmSelection() {
+    this.$emit('confirm', { start: this.startDate, end: this.endDate });
+  }
   }
 };
 </script>
@@ -140,10 +153,21 @@ export default {
   cursor: pointer;
   border-radius: 4px;
 }
-.start-date, .end-date {
-  background-color: #3b82f6;
+.start-date {
+  background-color:rgb(59, 246, 125);
   color: white;
 }
+
+.end-date{
+  background-color:rgb(241, 24, 24);
+  color: white;
+}
+
+.select-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .in-range {
   background-color: #bfdbfe;
 }

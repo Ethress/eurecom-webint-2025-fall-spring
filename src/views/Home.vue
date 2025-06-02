@@ -10,13 +10,20 @@
         type="text"
         class="search-input"
         placeholder="Search..."
+        v-model="searchText"
       />
-      <i
-        class="fas fa-calendar-alt calendar-icon"
-        ref="calendarIcon"
-        @click.stop="toggleDatePicker"
-      ></i>
-      <button class="search-button">Search</button>
+      <div class="calendar-icon-container">
+        <i
+          class="fas fa-calendar-alt calendar-icon"
+          ref="calendarIcon"
+          @click.stop="toggleDatePicker"
+        ></i>
+        <i
+          v-if="rangeDateChosen !== null"
+          class="fas fa-circle-check checkmark-overlay-icon"
+        ></i>
+      </div>
+      <button class="search-button" :disabled="isSearchButtonDisabled" @click="handleSearch">Search</button>
     </div>
   </div>
 
@@ -28,7 +35,7 @@
       :style="pickerStyles"
       ref="datePickerRef"
     >
-      <DateRangePicker />
+      <DateRangePicker  @confirm="handleDateSelection"/>
     </div>
   </teleport>
 
@@ -153,7 +160,7 @@
 <script setup>
 import heroImage from '../assets/images/mountain.jpg'
 
-
+import { useRouter } from 'vue-router' 
 
 //==================================
 
@@ -163,13 +170,18 @@ import articles from '../data/articles.js'
 // use all articles, or filter/slice for “featured”
 const featuredItems = articles
 
-import { ref, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { ref, nextTick, onMounted, onBeforeUnmount, computed} from 'vue'
 import DateRangePicker from './DateRangePicker.vue'   //Added
 
 // state & refs
+
+// Initialize useRouter
+const router = useRouter()
 const showDatePicker = ref(false)
 const calendarIcon = ref(null)
 const datePickerRef = ref(null)
+const rangeDateChosen = ref(null)
+const searchText = ref('')
 // style object for inline positioning
 const pickerStyles = ref({})
 // toggle visibility
@@ -205,6 +217,53 @@ function onClickOutside(e) {
     showDatePicker.value = false
   }
 }
+
+function handleDateSelection(range) {
+  rangeDateChosen.value=range;
+  showDatePicker.value = false;
+  console.log('Selected range:', rangeDateChosen.value);
+}
+
+// COMPUTED PROPERTY FOR BUTTON DISABLING
+const isSearchButtonDisabled = computed(() => {
+  // Check if search text is empty AND rangeDateChosen is null
+  return searchText.value.trim() === '' && rangeDateChosen.value === null;
+});
+
+// Helper function to format a Date object into YYYY-MM-DD (local time)
+const formatDateToYYYYMMDD = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed (0-11)
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const handleSearch = () => {
+  if (isSearchButtonDisabled.value) {
+    // Optionally, alert the user or do nothing if button is disabled
+    console.log('Search button is disabled. Please enter text or select dates.');
+    return;
+  }
+
+  const queryParams = {};
+  if (searchText.value.trim() !== '') {
+    queryParams.text = searchText.value.trim();
+  }
+
+  // Add date range if selected
+  if (rangeDateChosen.value && typeof rangeDateChosen.value === 'object' && rangeDateChosen.value.start && rangeDateChosen.value.end) {
+    const { start: startDate, end: endDate } = rangeDateChosen.value;
+
+    // Check if they are valid Date objects before trying to format
+    if (startDate instanceof Date && !isNaN(startDate) && endDate instanceof Date && !isNaN(endDate)) {
+      queryParams.start = formatDateToYYYYMMDD(startDate);
+      queryParams.end = formatDateToYYYYMMDD(endDate);
+    }
+  router.push({ name: 'Browse', query: queryParams });
+  }
+};
+
+
 onMounted(() => {
   document.addEventListener('click', onClickOutside)
   startTimer()    //Carousel
@@ -316,7 +375,6 @@ const featuredItems = [
   margin-right: 0.75rem;
   font-size: 1.25rem;
   color: #666;
-  cursor: pointer;
 }
 
 .search-input {
@@ -328,9 +386,29 @@ const featuredItems = [
 }
 
 .calendar-icon {
-  margin: 0 0.75rem;
   font-size: 1.25rem;
-  cursor: pointer;
+  /* No special styles needed here */
+}
+
+.checkmark-overlay-icon {
+  position: absolute; /* Position absolutely relative to its wrapper */
+  bottom: -5px; /* Adjust as needed to position below */
+  right: -5px; /* Adjust as needed to position to the right/left */
+  color: #42b983;
+  font-size: 0.8em; /* Make it smaller */
+  background-color: white; /* Optional: A small background to make it pop */
+  border-radius: 50%; /* Optional: Round background */
+  padding: 2px; /* Optional: Padding for the background */
+}
+
+.calendar-icon-container {
+  position: relative; /* THIS IS CRUCIAL: Makes it the positioning context for absolute children */
+  margin: 0 0.75rem; /* Space the container from input/button */
+  cursor: pointer; /* Makes the entire area clickable for the date picker */
+  /* If you want the icons themselves to be aligned horizontally within this container,
+     you might add: */
+  display: flex;
+  align-items: center;
 }
 
 .search-button {
@@ -342,6 +420,16 @@ const featuredItems = [
   border-radius: 0.75rem;
   font-size: 1rem;
   cursor: pointer;
+ transition: background-color 0.3s ease, opacity 0.3s ease; /* Add transition for smoothness */
+}
+
+/* --- Styles for the disabled state --- */
+.search-button:disabled {
+  background-color: #a6d9be; /* A lighter shade of your active color */
+  color: #e0e0e0; /* Lighter text color */
+  cursor: not-allowed; /* Change cursor to indicate non-interactable */
+  opacity: 0.7; /* Make it slightly transparent */
+  box-shadow: none; /* Remove any active button shadows */
 }
 
 /* ——— Featured grid styles ——— */

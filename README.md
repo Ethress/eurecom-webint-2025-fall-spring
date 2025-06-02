@@ -34,9 +34,10 @@ Features
 
 - Home page
     - [x] Dynamic date picker when clicking on the calendar
-    - [ ] For date picker: Select button, different color for beginning/end, keep choice in memory when sending
-    - [ ] Make the search bar functional (redirect to Browse + add args to url)
-    - [ ] Disable search bar when no date/input field are entered
+    - [x] For date picker: Select button, different color for beginning/end, keep choice in memory when sending
+    - [x] Make the search bar functional (redirect to Browse + add args to url)
+    - [x] Disable search bar when no date/input field are entered
+    - [x] Added checkmark for when we have selected a date
 
 - About page
     - [ ] Modify content
