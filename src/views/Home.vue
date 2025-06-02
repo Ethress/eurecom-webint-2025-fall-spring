@@ -259,8 +259,8 @@ const handleSearch = () => {
       queryParams.start = formatDateToYYYYMMDD(startDate);
       queryParams.end = formatDateToYYYYMMDD(endDate);
     }
-  router.push({ name: 'Browse', query: queryParams });
   }
+  router.push({ name: 'Browse', query: queryParams });
 };
 
 
