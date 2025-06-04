@@ -7,7 +7,7 @@ import Browse from '../views/Browse.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import ArticleDetail from '../views/ArticleDetail.vue'
-
+import ReservationConfirmation from '../views/ReservationConfirmation.vue'
 //Vue.use(Router)
 
 const routes = [
@@ -24,6 +24,11 @@ const routes = [
       component: ArticleDetail, 
       props: true 
   },
+  {
+    path: '/reservation_confirmation',
+    name: 'reservation_confirmation',
+    component: ReservationConfirmation
+  }
 ]
 
 const router = createRouter({

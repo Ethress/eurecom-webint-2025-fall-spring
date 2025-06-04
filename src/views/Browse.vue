@@ -383,12 +383,6 @@ onBeforeUnmount(() => {
   box-shadow: none;
 }
 
-/* Datepicker wrapper for teleported element */
-.datepicker-wrapper {
-  /* No specific styles needed here, position is handled by inline style */
-}
-/* --- END: Copied Search Overlay Styles --- */
-
 .content {
   display: flex;
   flex: 1;

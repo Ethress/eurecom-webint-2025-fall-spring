@@ -55,14 +55,15 @@
   </div>
 </template>
 
-<script setup>
-import { useRoute } from 'vue-router'
+<script setup>  
+import {useRoute, useRouter } from 'vue-router'
 import articles from '../data/articles.js'
 import { computed, ref, reactive, onMounted } from 'vue'
 import DateRangePicker from './DateRangePicker.vue'
 import L from 'leaflet'
 
 const route = useRoute()
+const router = useRouter()
 const articleId = computed(() => parseInt(route.params.id, 10))
 const article = computed(() =>
   articles.find(a => a.id === articleId.value)
@@ -106,8 +107,14 @@ const isInvalidRange = computed(() => {
 })        
 
 function handleReserve() {
-  // only called when valid
-  alert(`Reservation: ${article.value.title} from ${pickedRange.start.toDateString()} to ${pickedRange.end.toDateString()}`)
+  router.push({
+    name: 'reservation_confirmation',
+    query: {
+      id:    article.value.id,
+      start: pickedRange.start.toISOString().slice(0,10),
+      end:   pickedRange.end.toISOString().slice(0,10)
+    }
+  })
 }
 
 onMounted(() => {
