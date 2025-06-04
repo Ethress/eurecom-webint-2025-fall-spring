@@ -40,7 +40,7 @@ Features
     - [x] Added checkmark for when we have selected a date
 
 - About page
-    - [ ] Modify content
+    - [x] Modify content
 - Contact page
     - [ ] Modify content
 - Map page
@@ -57,10 +57,10 @@ Features
         - [ ] A price range similar to this [website](https://stock.adobe.com/fr/images/price-range-filter-in-modern-style-for-your-ui-ux-design-vector-illustration/486137596)
 - Article page
     - [x] Create article page dynamically according to its id
-    - [ ] Centered on top should be the picture of the article, arrows on the left and right to see more pictures if there are (with whte dots to see at what index we are)
+    - [x] Centered on top should be the picture of the article, arrows on the left and right to see more pictures if there are (with whte dots to see at what index we are)
         - [ ] Add the possibility to play a video ??
-    - [ ] Add content for each articles, under the picture should be the title, price, grade, lcation, etc like on this [website](https://www.seloger.com/annonces/locations/parking/antibes-06/les-combes/235661643.htm?ln=classified_search_results&serp_view=list&search=distributionTypes%3DRent%26estateTypes%3DParking%26locations%3DAD08FR1954%26order%3DDateDesc&m=classified_search_results_classified_classified_detail_L)
-        - [ ] It would be nice to have a little map zoomed in on the location of the parking with a marker
+    - [x] Add content for each articles, under the picture should be the title, price, grade, lcation, etc like on this [website](https://www.seloger.com/annonces/locations/parking/antibes-06/les-combes/235661643.htm?ln=classified_search_results&serp_view=list&search=distributionTypes%3DRent%26estateTypes%3DParking%26locations%3DAD08FR1954%26order%3DDateDesc&m=classified_search_results_classified_classified_detail_L)
+        - [x] It would be nice to have a little map zoomed in on the location of the parking with a marker
 - Login page
     - [x] Use regex to check mail validity
     - [x] Hidden password field
