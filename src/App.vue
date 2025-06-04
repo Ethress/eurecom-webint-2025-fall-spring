@@ -6,7 +6,8 @@
       <router-link to="/contact">Contact</router-link> |
       <router-link to="/map">Map</router-link> |
       <router-link to="/browse">Browse</router-link> |
-      <router-link to="/login">Login</router-link>
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/register">Register</router-link>
     </nav>
     <main>
       <router-view/>

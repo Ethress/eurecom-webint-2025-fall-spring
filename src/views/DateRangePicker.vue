@@ -13,11 +13,12 @@
     <div class="days">
       <span
         v-for="cell in daysInMonth"
-        :key="cell.date"
+        :key="cell.date?.toDateString() + '-' + cell.day"
         :class="{
           'start-date': isStart(cell.date),
           'end-date': isEnd(cell.date),
-          'in-range': isInRange(cell.date)
+          'in-range': isInRange(cell.date),
+          'unavailable': isUnavailable(cell.date)
         }"
         @click="selectDate(cell.date)"
       >
@@ -26,67 +27,72 @@
     </div>
   </div>
 
-<div class="footer">
-  <button
-    class="select-button"
-    :disabled="!startDate || !endDate"
-    @click="confirmSelection"
-  >
-    Select
-  </button>
-</div>
-
+  <div class="footer">
+    <button
+      class="select-button"
+      :disabled="!startDate || !endDate"
+      @click="confirmSelection"
+    >
+      Select
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'DateRangePicker',
+  props: {
+    // Array of { start: 'YYYY-MM-DD', end: 'YYYY-MM-DD' }
+    reservedDates: {type: Array,default: () => [] },
+    initialStart:  { type: Date,  default: null },
+    initialEnd:    { type: Date,  default: null }
+  },
   data() {
     return {
       currentMonth: new Date().getMonth(),
       currentYear: new Date().getFullYear(),
-      startDate: null,
-      endDate: null,
+      startDate:    this.initialStart,
+      endDate:      this.initialEnd,
       monthNames: [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
+        'January','February','March','April','May','June',
+        'July','August','September','October','November','December'
       ]
     };
   },
+  watch: {
+   initialStart(val) { this.startDate = val },
+   initialEnd(val)   { this.endDate   = val }
+  },
   computed: {
     weekDays() {
-      return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     },
     daysInMonth() {
       const days = [];
       const firstOfMonth = new Date(this.currentYear, this.currentMonth, 1);
       const offset = firstOfMonth.getDay();
 
-      // Fill blanks for days from previous month
+      // blank slots for previous‐month days
       for (let i = 0; i < offset; i++) {
         days.push({ date: null, day: '' });
       }
 
       const total = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
       for (let d = 1; d <= total; d++) {
-        days.push({
-          date: new Date(this.currentYear, this.currentMonth, d),
-          day: d
-        });
+        const dateObj = new Date(this.currentYear, this.currentMonth, d);
+        days.push({ date: dateObj, day: d });
       }
       return days;
     }
   },
   methods: {
     selectDate(date) {
-      if (!date) return;
-      // If no start or both are set, reset
+      if (!date || this.isUnavailable(date)) return;
       if (!this.startDate || (this.startDate && this.endDate)) {
         this.startDate = date;
         this.endDate = null;
       } else if (this.startDate && !this.endDate) {
         if (date < this.startDate) {
-          // If clicked before start, reset start
           this.startDate = date;
         } else {
           this.endDate = date;
@@ -101,9 +107,21 @@ export default {
     },
     isInRange(date) {
       return (
+        this.startDate &&
+        this.endDate &&
         date > this.startDate &&
         date < this.endDate
       );
+    },
+    isUnavailable(date) {
+      if (!date) return false;
+      // check if “date” is inside any reservedDates range
+      return this.reservedDates.some(range => {
+        const rs = new Date(range.start).getTime();
+        const re = new Date(range.end).getTime();
+        const d  = date.getTime();
+        return d >= rs && d <= re;
+      });
     },
     prevMonth() {
       if (this.currentMonth === 0) {
@@ -120,11 +138,10 @@ export default {
       } else {
         this.currentMonth++;
       }
-    }
-    ,
+    },
     confirmSelection() {
-    this.$emit('confirm', { start: this.startDate, end: this.endDate });
-  }
+      this.$emit('confirm', { start: this.startDate, end: this.endDate });
+    }
   }
 };
 </script>
@@ -135,7 +152,7 @@ export default {
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.9); /*Background color of datepicker*/
+  background-color: rgba(255,255,255,0.9);
 }
 .header {
   display: flex;
@@ -153,22 +170,26 @@ export default {
   cursor: pointer;
   border-radius: 4px;
 }
+/* Your existing styles: */
 .start-date {
-  background-color:rgb(59, 246, 125);
+  background-color: rgb(59,246,125);
   color: white;
 }
-
-.end-date{
-  background-color:rgb(241, 24, 24);
+.end-date {
+  background-color: rgb(241,24,24);
   color: white;
 }
-
+.in-range {
+  background-color: #bfdbfe;
+}
+/* New unavailable style: */
+.unavailable {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
 .select-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.in-range {
-  background-color: #bfdbfe;
 }
 </style>

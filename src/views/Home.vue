@@ -1,9 +1,7 @@
 <template>
-
   <div class="hero">
     <img :src="heroImage" alt="Hero" class="hero-img" />
 
-    <!-- Overlayed search container -->
     <div class="search-overlay">
       <i class="fas fa-search search-icon"></i>
       <input
@@ -27,7 +25,6 @@
     </div>
   </div>
 
-  <!-- teleport the picker to body so it sits on top of everything -->
   <teleport to="body">
     <div
       v-if="showDatePicker"
@@ -35,12 +32,10 @@
       :style="pickerStyles"
       ref="datePickerRef"
     >
-      <DateRangePicker  @confirm="handleDateSelection"/>
+      <DateRangePicker @confirm="handleDateSelection"/>
     </div>
   </teleport>
 
-  <!-- Icons and stats -->
-  <!-- Centered 2-row icon block with aligned columns -->
   <section class="icon-block">
     <div class="icon-row">
       <div class="icon-item">
@@ -75,15 +70,13 @@
         <i class="fas fa-coins"></i>
         <span class="icon-text">Rent your parking spot easily</span>
       </div>
-      <!-- removed the 4th icon-item here -->
-    </div>
+      </div>
   </section>
 
   <div>
     <h1>Events</h1>
   </div>
 
-  <!-- Event Banner Carousel -->
   <section class="event-banner">
     <div class="carousel">
       <div
@@ -108,13 +101,11 @@
     </div>
   </section>
 
-
   <div>
     <h1>Featured</h1>
     <p>Here are the top spots for you:</p>
   </div>
 
-  <!-- New Featured Grid -->
   <section class="featured">
     <div class="featured-grid">
       <router-link
@@ -137,25 +128,15 @@
           </div>
         </div>
 
+        <div class="item-tags">
+          <span v-for="tag in item.tags" :key="tag" class="tag">{{ tag }}</span>
+        </div>
         <p class="item-price">{{ item.price }} € /h</p>
       </router-link>
     </div>
   </section>
 
-
-  <!--
-  <ul>
-    <li v-for="article in articles" :key="article.id">
-      <router-link :to="{ name: 'article', params: { id: article.id } }">
-        {{ article.title }}
-      </router-link>
-    </li>
-  </ul>
-  -->
-
-
-
-</template>
+  </template>
 
 <script setup>
 import heroImage from '../assets/images/mountain.jpg'
@@ -495,6 +476,21 @@ const featuredItems = [
   font-weight: bold;
   font-size: 1rem;
   text-align: right;
+}
+
+.item-tags {
+  padding: 0.5rem 1rem; /* Padding similar to item-info */
+}
+
+.tag {
+  display: block;
+  background-color: #e0e0e0; /* Light grey background */
+  color: #555; /* Darker grey text */
+  padding: 3px 8px; /* Padding inside each tag */
+  border-radius: 5px; /* Slightly rounded corners */
+  font-size: 0.75rem; /* Smaller font size for tags */
+  white-space: nowrap; /* Prevents text inside a tag from wrapping */
+  margin-bottom: 5px;
 }
 
 /** Carousel */

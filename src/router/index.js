@@ -5,6 +5,7 @@ import Contact from '../views/Contact.vue'
 import Map from '../views/Map.vue'
 import Browse from '../views/Browse.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 import ArticleDetail from '../views/ArticleDetail.vue'
 
 //Vue.use(Router)
@@ -16,6 +17,7 @@ const routes = [
   { path: '/map', name: 'Map', component: Map },
   { path: '/browse', name: 'Browse', component: Browse },
   { path: '/login', name: 'Login', component: Login },
+  { path: '/register', name: 'Register', component: Register },
   { 
       path: '/article/:id', 
       name: 'article', 

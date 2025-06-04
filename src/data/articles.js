@@ -9,7 +9,13 @@ export default [
       '/images/article_A_1.webp',
       '/images/article_A_2.webp'
     ],
-    grade: 4
+    grade: 4,
+    tags: ['Underground Parking', '24/7 Access', 'CCTV Surveillance'],
+    reservedDates: [
+      { start: '2025-07-17', end: '2025-07-25' },
+      { start: '2025-06-28', end: '2025-07-03' },
+      { start: '2025-06-04', end: '2025-06-08' }
+    ]
   },
   {
     id: 2,
@@ -22,7 +28,13 @@ export default [
       '/images/article_B_2.webp',
       '/images/article_B_3.webp'
     ],
-    grade: 5
+    grade: 5,
+    tags: ['Covered Parking', 'Gated Entry', 'CCTV Surveillance', '24/7 Access'],
+    reservedDates: [
+      { start: '2025-07-04', end: '2025-07-10' },
+      { start: '2025-06-18', end: '2025-07-13' },
+      { start: '2025-07-24', end: '2025-07-27' }
+    ]
   },
   {
     id: 3,
@@ -31,7 +43,13 @@ export default [
     lat: 48.85799682429727, lng: 2.3341109385667, price: 0.5,
     address: "224 Top Leaze",
     image: ['/images/article_C_1.webp'],
-    grade: 4
+    grade: 4,
+    tags: ['24/7 Access', 'Large Vehicle Friendly'],
+    reservedDates: [
+      { start: '2025-07-26', end: '2025-07-29' },
+      { start: '2025-07-10', end: '2025-07-16' },
+      { start: '2025-06-14', end: '2025-06-24' }
+    ]
   },
   {
     id: 4,
@@ -45,7 +63,12 @@ export default [
       '/images/article_D_3.webp',
       '/images/article_D_4.webp'
     ],
-    grade: 3
+    grade: 3,
+    tags: ['Underground Parking', 'Motorcycle Parking', 'CCTV Surveillance', 'Gated Entry'],
+    reservedDates: [
+      { start: '2025-07-10', end: '2025-07-17' },
+      { start: '2025-06-20', end: '2025-06-24' }
+    ]
   },
   {
     id: 5,
@@ -58,7 +81,12 @@ export default [
       '/images/article_E_2.webp',
       '/images/article_E_3.webp'
     ],
-    grade: 4
+    grade: 4,
+    tags: ['Covered Parking', '24/7 Access', 'CCTV Surveillance', 'EV Charging Available'],
+    reservedDates: [
+      { start: '2025-07-23', end: '2025-07-29' },
+      { start: '2025-06-02', end: '2025-06-10' }
+    ]
   },
   {
     id: 6,
@@ -71,7 +99,12 @@ export default [
       '/images/article_F_2.webp',
       '/images/article_F_3.webp'
     ],
-    grade: 5
+    grade: 5,
+    tags: ['Covered Parking', 'Large Vehicle Friendly', '24/7 Access', 'CCTV Surveillance'],
+    reservedDates: [
+      { start: '2025-06-23', end: '2025-06-29' },
+      { start: '2025-07-18', end: '2025-07-26' }
+    ]
   },
   {
     id: 7,
@@ -83,7 +116,13 @@ export default [
       '/images/article_G_1.webp',
       '/images/article_G_2.webp'
     ],
-    grade: 3
+    grade: 3,
+    tags: ['Disabled Access', '24/7 Access'],
+    reservedDates: [
+      { start: '2025-06-18', end: '2025-06-22' },
+      { start: '2025-06-12', end: '2025-06-16' },
+      { start: '2025-07-05', end: '2025-07-12' }
+    ]
   },
   {
     id: 8,
@@ -92,6 +131,12 @@ export default [
     lat: 48.875850460558176, lng: 2.336636956224808, price: 3.2,
     address: "48 Jubilee Av.",
     image: ['/images/article_H_1.webp'],
-    grade: 4
+    grade: 4,
+    tags: ['Covered Parking', 'Underground Parking', '24/7 Access', 'CCTV Surveillance'],
+    reservedDates: [
+      { start: '2025-06-21', end: '2025-06-25' },
+      { start: '2025-07-10', end: '2025-07-21' },
+      { start: '2025-06-05', end: '2025-06-13' }
+    ]
   }
 ]

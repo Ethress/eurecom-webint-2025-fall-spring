@@ -53,8 +53,8 @@ Features
 - Browse page
     /!\ Started to build the template 
     - On the left:
-        - [ ] Sidebar with tags (with checkboxes)
-        - [ ] A price range similar to this [website](https://stock.adobe.com/fr/images/price-range-filter-in-modern-style-for-your-ui-ux-design-vector-illustration/486137596)
+        - [x] Sidebar with tags (with checkboxes)
+        - [x] A price range similar to this [website](https://stock.adobe.com/fr/images/price-range-filter-in-modern-style-for-your-ui-ux-design-vector-illustration/486137596)
 - Article page
     - [x] Create article page dynamically according to its id
     - [x] Centered on top should be the picture of the article, arrows on the left and right to see more pictures if there are (with whte dots to see at what index we are)
@@ -72,3 +72,8 @@ Packages installed:
 npm install vue-router@4
 npm install --save @fortawesome/fontawesome-free
 npm install leaflet
+
+
+npm install vue-slider-component
+npm install primevue
+npm install primeicons
