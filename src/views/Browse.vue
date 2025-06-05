@@ -442,7 +442,7 @@ onBeforeUnmount(() => {
 .clear-filters-button {
   width: 100%;
   padding: 10px 15px;
-  background-color: #c5c6c7;
+  background-color: #aeaeae;
   color: white;
   border: none;
   border-radius: 5px;

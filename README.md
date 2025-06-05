@@ -1,8 +1,7 @@
 # Vue 3 + Vite
+## Deliverables:
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+* Vercel url: https://eurecom-webint-2025-fall-spring.vercel.app/
 
 ## Prerequisites
 
@@ -22,7 +21,7 @@ Install dependencies
 npm install
 ```
 
-## Run demo
+Run demo
 
 ```bash
 npm run dev
@@ -41,8 +40,6 @@ Features
 
 - About page
     - [x] Modify content
-- Contact page
-    - [ ] Modify content
 - Map page
     /!\ Started to build the template
     - [x] Have an interactive map
@@ -66,14 +63,3 @@ Features
     - [x] Hidden password field
     - [x] Login button disabled when either fields ar empty / invalid
 - Possibly add an extra page ?
-
-
-Packages installed:
-npm install vue-router@4
-npm install --save @fortawesome/fontawesome-free
-npm install leaflet
-
-
-npm install vue-slider-component
-npm install primevue
-npm install primeicons
