@@ -1,7 +1,7 @@
 <template>
   <div class="hero">
     <img :src="heroImage" alt="Hero" class="hero-img" />
-
+    <div class="logo-text">Parknest</div>
     <div class="search-overlay">
       <i class="fas fa-search search-icon"></i>
       <input
@@ -331,6 +331,17 @@ const featuredItems = [
   object-fit: cover;
   object-position: center;
   display: block;
+}
+
+.logo-text {
+  position: absolute; 
+  bottom: 14rem; /* place above .search-overlay */
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(255, 255, 255);
+  font-size: 7rem;
+  font-weight: bold;
+  z-index: 2;
 }
 
 /* ——— Search overlay ——— */
