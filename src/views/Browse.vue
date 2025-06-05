@@ -58,28 +58,31 @@
         <section class="filter-section">
           <h2>Tags</h2>
           <div class="tag-option" v-for="tagLabel in [
-  'EV Charging Available',
-  '24/7 Access',
-  'Underground Parking',
-  'Covered Parking',
-  'Gated Entry',
-  'CCTV Surveillance',
-  'Large Vehicle Friendly',
-  'Motorcycle Parking',
-  'Disabled Access'
-]" :key="tagLabel">
-  <label>
-    <input
-      type="checkbox"
-      :value="tagLabel"
-      v-model="selectedTags"
-    />
-    {{ tagLabel }}
-  </label>
-</div>
+            'EV Charging Available',
+            '24/7 Access',
+            'Underground Parking',
+            'Covered Parking',
+            'Gated Entry',
+            'CCTV Surveillance',
+            'Large Vehicle Friendly',
+            'Motorcycle Parking',
+            'Disabled Access'
+          ]" :key="tagLabel">
+            <label>
+              <input
+                type="checkbox"
+                :value="tagLabel"
+                v-model="selectedTags"
+              />
+              {{ tagLabel }}
+            </label>
+          </div>
         </section>
 
-        <button @click="applyFilters" class="apply-filters-button">Apply Filters</button>
+        <div>
+          <button @click="clearFilters" class="clear-filters-button">Clear Filters</button>
+          <button @click="applyFilters" class="apply-filters-button">Apply Filters</button>
+        </div>
       </aside>
 
       <main class="products">
@@ -205,6 +208,15 @@ const formatDateToYYYYMMDD = (date) => {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+};
+
+const clearFilters = () => {
+  searchText.value = '';
+  rangeDateChosen.value = null;
+  priceRange.value = [minAllowedPrice, maxAllowedPrice];
+  selectedTags.value = [];
+
+  applyAllFilters();
 };
 
 // --- Unified Filtering Logic ---
@@ -427,10 +439,10 @@ onBeforeUnmount(() => {
   margin-bottom: 25px;
 }
 
-.apply-filters-button {
+.clear-filters-button {
   width: 100%;
   padding: 10px 15px;
-  background-color: #42b983;
+  background-color: #c5c6c7;
   color: white;
   border: none;
   border-radius: 5px;
@@ -439,8 +451,8 @@ onBeforeUnmount(() => {
   transition: background-color 0.2s ease;
 }
 
-.apply-filters-button:hover {
-  background-color: #36a070;
+.clear-filters-button:hover {
+  background-color: #a1aeb1;
 }
 
 .products {

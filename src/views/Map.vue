@@ -1,4 +1,7 @@
 <template>
+  <header class="banner">
+      <h1>Search by location</h1>
+    </header>
   <div class="map-container">
     <!-- Sidebar -->
     <aside class="sidebar">
@@ -104,6 +107,20 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.banner {
+  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
 .map-container {
   display: flex;
   height: 80vh;
