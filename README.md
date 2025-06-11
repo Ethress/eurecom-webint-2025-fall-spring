@@ -58,7 +58,7 @@ Features
         - [ ] Add the possibility to play a video ??
     - [x] Add content for each articles, under the picture should be the title, price, grade, lcation, etc like on this [website](https://www.seloger.com/annonces/locations/parking/antibes-06/les-combes/235661643.htm?ln=classified_search_results&serp_view=list&search=distributionTypes%3DRent%26estateTypes%3DParking%26locations%3DAD08FR1954%26order%3DDateDesc&m=classified_search_results_classified_classified_detail_L)
         - [x] It would be nice to have a little map zoomed in on the location of the parking with a marker
-- Login page
+- Login page 
     - [x] Use regex to check mail validity
     - [x] Hidden password field
     - [x] Login button disabled when either fields ar empty / invalid
