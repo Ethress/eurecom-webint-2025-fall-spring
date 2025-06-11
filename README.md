@@ -62,4 +62,4 @@ Features
     - [x] Use regex to check mail validity
     - [x] Hidden password field
     - [x] Login button disabled when either fields ar empty / invalid
-- Possibly add an extra page ?
+
